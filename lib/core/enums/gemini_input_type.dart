@@ -1,0 +1,1 @@
+enum GeminiInputType { text, textAndImage }
