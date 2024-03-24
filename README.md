@@ -37,7 +37,7 @@ Riverpod, designed for Flutter applications, streamlines state management, data 
 
 - [x] Setup text-based queries
 - [x] Setup text and image based queries
-- [] Setup multiturn conversation/chat
+- [ ] Setup multiturn conversation/chat
 
 Feel free to fork, open PRs and contribute.
 Star the repo to show love.
