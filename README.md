@@ -40,5 +40,5 @@ Riverpod, designed for Flutter applications, streamlines state management, data 
 - [ ] Setup multiturn conversation/chat
 
 Feel free to fork, open PRs and contribute.
-Star the repo to show love.
+Star the repo to show love 🙌.
       
