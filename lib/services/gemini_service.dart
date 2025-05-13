@@ -16,11 +16,11 @@ class GeminiService {
       throw Exception('GEMINI_API_KEY not found');
     }
     textModel = GenerativeModel(
-      model: 'gemini-pro',
+      model: 'gemini-1.5-flash',
       apiKey: key,
     );
     textAndImageModel = GenerativeModel(
-      model: 'gemini-pro-vision',
+      model: 'gemini-1.5-flash',
       apiKey: key,
     );
   }

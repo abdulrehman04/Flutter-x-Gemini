@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gemini/core/constants/app_colors.dart';
 import 'package:gemini/core/state_service.dart';
-import 'package:gemini/models/chat_message.dart';
 import 'package:gemini/pages/text%20and%20image%20chat/text_and_image_chat_view_model.dart';
 import 'package:gemini/widgets/bottom_message_bar.dart';
 import 'package:gemini/widgets/chat_message_bubble.dart';
@@ -34,6 +33,9 @@ class TextAndImageView extends ConsumerWidget {
           );
           controller.messageController.text = '';
         },
+        onMicTap: () {
+          controller.convertSpeechToText(controller.messageController);
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 70),
@@ -46,7 +48,12 @@ class TextAndImageView extends ConsumerWidget {
                 ChatMessageBubble(item: controller.query!),
               if (controller.isLoading) const ResponseLoadingShimmer(),
               if (controller.aiResponse != null)
-                ChatMessageBubble(item: controller.aiResponse!),
+                ChatMessageBubble(
+                  item: controller.aiResponse!,
+                  onSpeak: () {
+                    controller.speak(controller.aiResponse!.message);
+                  },
+                ),
             ],
           ),
         ),

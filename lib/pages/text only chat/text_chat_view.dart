@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gemini/core/constants/app_colors.dart';
-import 'package:gemini/core/enums/user_type.dart';
 import 'package:gemini/core/state_service.dart';
 import 'package:gemini/models/chat_message.dart';
 import 'package:gemini/pages/text%20only%20chat/text_chat_view_model.dart';
@@ -31,6 +29,9 @@ class TextChatView extends ConsumerWidget {
           );
           controller.messageController.text = '';
         },
+        onMicTap: () {
+          controller.convertSpeechToText(controller.messageController);
+        },
       ),
       body: ListView.builder(
         itemCount: controller.messages.length + (controller.isLoading ? 1 : 0),
@@ -42,7 +43,12 @@ class TextChatView extends ConsumerWidget {
           } else {
             ChatMessage item =
                 controller.messages[index - (controller.isLoading ? 1 : 0)];
-            return ChatMessageBubble(item: item);
+            return ChatMessageBubble(
+              item: item,
+              onSpeak: () {
+                controller.speak(item.message);
+              },
+            );
           }
         },
       ),

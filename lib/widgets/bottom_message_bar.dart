@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:gemini/core/constants/app_colors.dart';
 
@@ -8,12 +6,14 @@ class BottomMessageBar extends StatelessWidget {
     super.key,
     required this.controller,
     required this.onSend,
+    required this.onMicTap,
     this.allowPickImage = false,
     this.onPickImage,
   });
 
   final TextEditingController controller;
   final void Function() onSend;
+  final void Function() onMicTap;
   final bool allowPickImage;
   final void Function()? onPickImage;
 
@@ -70,10 +70,21 @@ class BottomMessageBar extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
+                      onTap: onMicTap,
+                      child: Icon(
+                        Icons.mic,
+                        size: 25,
+                        color: AppColors.instance.subtitleGrey,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    GestureDetector(
                       onTap: onSend,
                       child: Icon(
                         Icons.send,
-                        size: 22,
+                        size: 20,
                         color: AppColors.instance.subtitleGrey,
                       ),
                     ),
